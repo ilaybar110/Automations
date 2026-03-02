@@ -1,20 +1,49 @@
-# Automation Builder Web App
+# Automation Builder Web App (with real scheduler)
 
-A mobile-friendly (iPhone-first) web app for creating and tracking automations.
+This project now includes a real backend scheduler.
 
-## Features
+## What works now
 
-- Create automations from free text.
-- Dashboard for all automations with **current stage** and progress.
-- Settings page with:
-  - Hebrew/English language switch.
-  - Dark Mode toggle.
-- Local persistence with browser storage.
+- Create automation from free text (including time like `15:30`).
+- Backend cron scheduling (daily/weekly detection).
+- Real execution stages: queued → collecting → analyzing → sending → done/failed.
+- Manual **Run now** button.
+- Email delivery through SMTP.
+- Hebrew/English + Dark Mode settings.
 
-## Run locally
+## Run
 
 ```bash
-python3 -m http.server 8000
+npm install
+npm start
 ```
 
-Open `http://localhost:8000`.
+Open: `http://localhost:8000`
+
+## SMTP configuration (required for email)
+
+Set environment variables before starting:
+
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USER`
+- `SMTP_PASS`
+- `SMTP_FROM`
+- optional: `TZ` (default: `Asia/Jerusalem`)
+
+Example:
+
+```bash
+export SMTP_HOST=smtp.gmail.com
+export SMTP_PORT=587
+export SMTP_USER=your-user
+export SMTP_PASS=your-pass-or-app-password
+export SMTP_FROM="Automation Bot <bot@example.com>"
+export TZ=Asia/Jerusalem
+npm start
+```
+
+## Important
+
+Opening with `file://` will not run server-side automations.
+Use `http://localhost:8000` with the Node server running.
