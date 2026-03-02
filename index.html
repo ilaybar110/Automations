@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automation Builder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-glow"></div>
+    <main class="app-shell">
+      <header class="hero">
+        <p class="eyebrow" data-i18n="eyebrow"></p>
+        <h1 data-i18n="heroTitle"></h1>
+        <p class="subtitle" data-i18n="heroSubtitle"></p>
+      </header>
+
+      <nav class="tabs card" aria-label="App sections">
+        <button class="tab-btn active" type="button" data-tab-target="create" data-i18n="tabCreate"></button>
+        <button class="tab-btn" type="button" data-tab-target="dashboard" data-i18n="tabDashboard"></button>
+        <button class="tab-btn" type="button" data-tab-target="settings" data-i18n="tabSettings"></button>
+      </nav>
+
+      <section class="tab-panel" data-tab-panel="create">
+        <section class="card composer" aria-labelledby="composer-title">
+          <div class="card-title-row">
+            <h2 id="composer-title" data-i18n="composerTitle"></h2>
+            <button id="create-btn" type="button" class="primary-btn" data-i18n="createButton"></button>
+          </div>
+
+          <form id="automation-form" class="form-grid">
+            <label for="automation-name" data-i18n="titleLabel"></label>
+            <input id="automation-name" name="automationName" type="text" maxlength="80" required />
+
+            <label for="email" data-i18n="emailLabel"></label>
+            <input id="email" name="email" type="email" required />
+
+            <label for="automation-prompt" data-i18n="promptLabel"></label>
+            <textarea id="automation-prompt" name="automationPrompt" rows="6" required></textarea>
+          </form>
+        </section>
+
+        <section id="preview" class="card preview hidden" aria-live="polite">
+          <h2 data-i18n="previewTitle"></h2>
+          <div id="preview-content"></div>
+          <button id="save-btn" type="button" class="secondary-btn" data-i18n="saveButton"></button>
+        </section>
+      </section>
+
+      <section class="tab-panel hidden" data-tab-panel="dashboard">
+        <section class="card saved" aria-labelledby="saved-title">
+          <h2 id="saved-title" data-i18n="dashboardTitle"></h2>
+          <div id="saved-list" class="saved-list"></div>
+        </section>
+      </section>
+
+      <section class="tab-panel hidden" data-tab-panel="settings">
+        <section class="card settings" aria-labelledby="settings-title">
+          <h2 id="settings-title" data-i18n="settingsTitle"></h2>
+          <div class="settings-grid">
+            <div class="setting-row">
+              <div>
+                <h3 data-i18n="languageTitle"></h3>
+                <p data-i18n="languageDescription"></p>
+              </div>
+              <button id="lang-toggle-btn" type="button" class="secondary-btn"></button>
+            </div>
+
+            <div class="setting-row">
+              <div>
+                <h3 data-i18n="themeTitle"></h3>
+                <p data-i18n="themeDescription"></p>
+              </div>
+              <button id="theme-toggle-btn" type="button" class="secondary-btn"></button>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <template id="saved-item-template">
+      <article class="saved-item">
+        <div class="saved-item-header">
+          <h3></h3>
+          <span class="badge schedule-badge"></span>
+        </div>
+        <p class="saved-item-email"></p>
+        <div class="progress-wrap">
+          <div class="progress-labels">
+            <strong class="status-title"></strong>
+            <span class="status-percent"></span>
+          </div>
+          <div class="progress-track"><span class="progress-fill"></span></div>
+        </div>
+        <label class="status-select-label">
+          <span></span>
+          <select class="status-select"></select>
+        </label>
+        <ul class="steps"></ul>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
