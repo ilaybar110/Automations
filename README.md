@@ -1,20 +1,20 @@
 # Automation Builder Web App
 
-A lightweight, mobile-friendly web app for creating automations in plain English.
+A mobile-friendly (iPhone-first) web app for creating and tracking automations.
 
 ## Features
 
-- Clean and responsive UI optimized for iPhone browsers.
-- **Create New Automation** action with free-text input.
-- Automatic plan generation (schedule + execution steps).
-- Local saving in browser storage for created automations.
+- Create automations from free text.
+- Dashboard for all automations with **current stage** and progress.
+- Settings page with:
+  - Hebrew/English language switch.
+  - Dark Mode toggle.
+- Local persistence with browser storage.
 
 ## Run locally
-
-Because this project is static HTML/CSS/JS, you can open `index.html` directly or run a local server:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then open: `http://localhost:8000`.
+Open `http://localhost:8000`.

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="he" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,61 +10,71 @@
     <div class="background-glow"></div>
     <main class="app-shell">
       <header class="hero">
-        <p class="eyebrow">Automation Studio</p>
-        <h1>Build your automations in plain English</h1>
-        <p class="subtitle">
-          Describe what you want to automate, and the app generates a clear workflow plan you can save.
-        </p>
+        <p class="eyebrow" data-i18n="eyebrow"></p>
+        <h1 data-i18n="heroTitle"></h1>
+        <p class="subtitle" data-i18n="heroSubtitle"></p>
       </header>
 
-      <section class="card composer" aria-labelledby="composer-title">
-        <div class="card-title-row">
-          <h2 id="composer-title">Create New Automation</h2>
-          <button id="create-btn" type="button" class="primary-btn">Create New Automation</button>
-        </div>
+      <nav class="tabs card" aria-label="App sections">
+        <button class="tab-btn active" type="button" data-tab-target="create" data-i18n="tabCreate"></button>
+        <button class="tab-btn" type="button" data-tab-target="dashboard" data-i18n="tabDashboard"></button>
+        <button class="tab-btn" type="button" data-tab-target="settings" data-i18n="tabSettings"></button>
+      </nav>
 
-        <form id="automation-form" class="form-grid">
-          <label for="automation-name">Automation title</label>
-          <input
-            id="automation-name"
-            name="automationName"
-            type="text"
-            placeholder="Morning Market Brief"
-            maxlength="80"
-            required
-          />
+      <section class="tab-panel" data-tab-panel="create">
+        <section class="card composer" aria-labelledby="composer-title">
+          <div class="card-title-row">
+            <h2 id="composer-title" data-i18n="composerTitle"></h2>
+            <button id="create-btn" type="button" class="primary-btn" data-i18n="createButton"></button>
+          </div>
 
-          <label for="email">Notification email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="you@example.com"
-            required
-          />
+          <form id="automation-form" class="form-grid">
+            <label for="automation-name" data-i18n="titleLabel"></label>
+            <input id="automation-name" name="automationName" type="text" maxlength="80" required />
 
-          <label for="automation-prompt">What should this automation do?</label>
-          <textarea
-            id="automation-prompt"
-            name="automationPrompt"
-            rows="6"
-            placeholder="Every day at 7 AM, review global capital market news, summarize the most important updates, and send me an email digest."
-            required
-          ></textarea>
-        </form>
+            <label for="email" data-i18n="emailLabel"></label>
+            <input id="email" name="email" type="email" required />
+
+            <label for="automation-prompt" data-i18n="promptLabel"></label>
+            <textarea id="automation-prompt" name="automationPrompt" rows="6" required></textarea>
+          </form>
+        </section>
+
+        <section id="preview" class="card preview hidden" aria-live="polite">
+          <h2 data-i18n="previewTitle"></h2>
+          <div id="preview-content"></div>
+          <button id="save-btn" type="button" class="secondary-btn" data-i18n="saveButton"></button>
+        </section>
       </section>
 
-      <section id="preview" class="card preview hidden" aria-live="polite">
-        <h2>Generated automation plan</h2>
-        <div id="preview-content"></div>
-        <button id="save-btn" type="button" class="secondary-btn">Save Automation</button>
+      <section class="tab-panel hidden" data-tab-panel="dashboard">
+        <section class="card saved" aria-labelledby="saved-title">
+          <h2 id="saved-title" data-i18n="dashboardTitle"></h2>
+          <div id="saved-list" class="saved-list"></div>
+        </section>
       </section>
 
-      <section class="card saved" aria-labelledby="saved-title">
-        <h2 id="saved-title">Saved automations</h2>
-        <div id="saved-list" class="saved-list">
-          <p class="empty-state">No automations yet. Create your first one above.</p>
-        </div>
+      <section class="tab-panel hidden" data-tab-panel="settings">
+        <section class="card settings" aria-labelledby="settings-title">
+          <h2 id="settings-title" data-i18n="settingsTitle"></h2>
+          <div class="settings-grid">
+            <div class="setting-row">
+              <div>
+                <h3 data-i18n="languageTitle"></h3>
+                <p data-i18n="languageDescription"></p>
+              </div>
+              <button id="lang-toggle-btn" type="button" class="secondary-btn"></button>
+            </div>
+
+            <div class="setting-row">
+              <div>
+                <h3 data-i18n="themeTitle"></h3>
+                <p data-i18n="themeDescription"></p>
+              </div>
+              <button id="theme-toggle-btn" type="button" class="secondary-btn"></button>
+            </div>
+          </div>
+        </section>
       </section>
     </main>
 
@@ -72,9 +82,20 @@
       <article class="saved-item">
         <div class="saved-item-header">
           <h3></h3>
-          <span class="badge"></span>
+          <span class="badge schedule-badge"></span>
         </div>
         <p class="saved-item-email"></p>
+        <div class="progress-wrap">
+          <div class="progress-labels">
+            <strong class="status-title"></strong>
+            <span class="status-percent"></span>
+          </div>
+          <div class="progress-track"><span class="progress-fill"></span></div>
+        </div>
+        <label class="status-select-label">
+          <span></span>
+          <select class="status-select"></select>
+        </label>
         <ul class="steps"></ul>
       </article>
     </template>
