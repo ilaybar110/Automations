@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automation Builder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-glow"></div>
+    <main class="app-shell">
+      <header class="hero">
+        <p class="eyebrow">Automation Studio</p>
+        <h1>Build your automations in plain English</h1>
+        <p class="subtitle">
+          Describe what you want to automate, and the app generates a clear workflow plan you can save.
+        </p>
+      </header>
+
+      <section class="card composer" aria-labelledby="composer-title">
+        <div class="card-title-row">
+          <h2 id="composer-title">Create New Automation</h2>
+          <button id="create-btn" type="button" class="primary-btn">Create New Automation</button>
+        </div>
+
+        <form id="automation-form" class="form-grid">
+          <label for="automation-name">Automation title</label>
+          <input
+            id="automation-name"
+            name="automationName"
+            type="text"
+            placeholder="Morning Market Brief"
+            maxlength="80"
+            required
+          />
+
+          <label for="email">Notification email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="you@example.com"
+            required
+          />
+
+          <label for="automation-prompt">What should this automation do?</label>
+          <textarea
+            id="automation-prompt"
+            name="automationPrompt"
+            rows="6"
+            placeholder="Every day at 7 AM, review global capital market news, summarize the most important updates, and send me an email digest."
+            required
+          ></textarea>
+        </form>
+      </section>
+
+      <section id="preview" class="card preview hidden" aria-live="polite">
+        <h2>Generated automation plan</h2>
+        <div id="preview-content"></div>
+        <button id="save-btn" type="button" class="secondary-btn">Save Automation</button>
+      </section>
+
+      <section class="card saved" aria-labelledby="saved-title">
+        <h2 id="saved-title">Saved automations</h2>
+        <div id="saved-list" class="saved-list">
+          <p class="empty-state">No automations yet. Create your first one above.</p>
+        </div>
+      </section>
+    </main>
+
+    <template id="saved-item-template">
+      <article class="saved-item">
+        <div class="saved-item-header">
+          <h3></h3>
+          <span class="badge"></span>
+        </div>
+        <p class="saved-item-email"></p>
+        <ul class="steps"></ul>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
